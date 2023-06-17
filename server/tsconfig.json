@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "esModuleInterop": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src",
+    ".eslintrc.js",
+    "config.js",
+    "ecosystem.config.js",
+  ],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": false,
+  }
+}
