@@ -71,7 +71,7 @@ export default function Video() {
         <Button
           href="https://www.youtube.com/@NovaIVFFertility"
           target="_blank"
-          style={{ textDecoration: 'none', width: 'auto' }}
+          style={{ textDecoration: 'none', width: 'auto', marginTop: '10px' }}
         >
           VIEW MORE
         </Button>

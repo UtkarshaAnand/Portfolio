@@ -4,9 +4,6 @@ function Footer() {
   return (
     <div id='contact'>
       <div className="footer-container">
-        <h4 className="mb-4 text-muted">
-          <b>CONTACT US</b>
-        </h4>
       </div>
       <div className="row">
         <div className="contact-container col-12 col-lg-4">
