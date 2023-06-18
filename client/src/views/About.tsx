@@ -12,7 +12,7 @@ function About() {
           in infertility. Dr. Sugata is committed to providing the best possible care to her
           patients. She has previously worked with renowned IVF institutes and currently serves as a
           senior consultant and IVF specialist at Nova IVF Howrah.
-          <br /> Nova IVF is a trusted and prominent brand in the Indian IVF sector, known for its
+          <br /> Nova IVF is a trusted chain in the Indian IVF sector, known for its
           transparency and its commitment to helping couples achieve successful pregnancies using
           their own gametes.
         </p>

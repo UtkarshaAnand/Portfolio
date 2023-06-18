@@ -9,8 +9,8 @@ export default function Video() {
       </h4>
       <div className="video-content row">
         <div className="col-12 col-lg-3" key={1} style={{ paddingBottom: '22px' }}>
-          <div className="video-card card">
-            <div className="card-body embed-responsive embed-responsive-16by9">
+          {/* <div className="video-card card"> */}
+            {/* <div className="card-body embed-responsive embed-responsive-16by9"> */}
               <iframe
                 className="embed-responsive-item"
                 style={{ border: 0 }}
@@ -18,12 +18,12 @@ export default function Video() {
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
         </div>
         <div className="col-12 col-lg-3" key={2} style={{ paddingBottom: '22px' }}>
-          <div className="video-card card">
-            <div className="card-body embed-responsive embed-responsive-16by9">
+          {/* <div className="video-card card">
+            <div className="card-body embed-responsive embed-responsive-16by9"> */}
               <iframe
                 className="embed-responsive-item"
                 style={{ border: 0 }}
@@ -33,12 +33,12 @@ export default function Video() {
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
-            </div>
-          </div>
+            {/* </div>
+          </div> */}
         </div>
         <div className="col-12 col-lg-3" key={3} style={{ paddingBottom: '22px' }}>
-          <div className="video-card card">
-            <div className="card-body embed-responsive embed-responsive-16by9">
+          {/* <div className="video-card card">
+            <div className="card-body embed-responsive embed-responsive-16by9"> */}
               <iframe
                 className="embed-responsive-item"
                 style={{ border: 0 }}
@@ -48,12 +48,12 @@ export default function Video() {
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
-            </div>
-          </div>
+            {/* </div>
+          </div> */}
         </div>
         <div className="col-12 col-lg-3" key={4} style={{ paddingBottom: '22px' }}>
-          <div className="video-card card">
-            <div className="card-body embed-responsive embed-responsive-16by9">
+          {/* <div className="video-card card">
+            <div className="card-body embed-responsive embed-responsive-16by9"> */}
               <iframe
                 className="embed-responsive-item"
                 style={{ border: 0 }}
@@ -63,8 +63,8 @@ export default function Video() {
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
-            </div>
-          </div>
+            {/* </div>
+          </div> */}
         </div>
       </div>
       <div className="text-center">
