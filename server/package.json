@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "start": "nodemon src/index.ts",

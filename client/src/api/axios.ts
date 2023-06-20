@@ -6,7 +6,7 @@ function getAxios() {
   if (axiosInstance) return axiosInstance;
 
   axiosInstance = Axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: '/api',
     timeout: 5000,
   });
   
