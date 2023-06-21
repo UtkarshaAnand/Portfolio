@@ -4,21 +4,35 @@ import mongoose from 'mongoose';
 import TestimonialModel from './testimonial.model';
 
 const getTestimonials: RequestHandler = async (req, res, next) => {
+  const { skip, limit } = req.query;
+  const skipInt = parseInt(skip as string);
+  const limitInt = parseInt(limit as string);
   try {
     const testimonials = await TestimonialModel.find(
       {},
       {},
-      { limit: 3, sort: { createdAt: -1 } },
+      { limit: limitInt, skip: skipInt, sort: { createdAt: -1 } },
     ).exec();
-    res.status(200).send({ items: testimonials });
+    const totalCount = await TestimonialModel.countDocuments();
+    res
+      .status(200)
+      .send({
+        items: testimonials,
+        pageInfo: {
+          total: totalCount,
+          limit: limitInt,
+          skip: skipInt,
+          hasNextPage: skipInt + limitInt < totalCount,
+        },
+      });
   } catch (err) {
     next(err);
   }
 };
 
 const createTestimonial: RequestHandler = async (req, res, next) => {
+  const { name, comment } = req.body;
   try {
-    const { name, comment } = req.body;
     if (!name) {
       throw createHttpError(400, 'Name is required');
     }

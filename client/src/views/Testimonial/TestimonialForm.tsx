@@ -9,7 +9,14 @@ interface TestimonialFormInput {
   comment: string;
 }
 
-export default function TestimonialForm({ onSubmit }: { onSubmit: () => void }) {
+interface TestimonialFormProps {
+  viewMore: boolean;
+  onSubmit: () => void;
+  onViewMore: () => void;
+}
+
+export default function TestimonialForm(props: TestimonialFormProps) {
+  const { viewMore, onSubmit, onViewMore } = props;
   const [showModal, setShowModal] = useState(false);
 
   const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<TestimonialFormInput>();
@@ -44,7 +51,7 @@ export default function TestimonialForm({ onSubmit }: { onSubmit: () => void }) 
     <div id="testimonial">
       <div className='text-center'>
         <Button variant="link" onClick={handleOpen} style={{ textDecoration: 'none', width: 'auto' }}>Write a Review</Button>
-        {/* <Button variant="link" style={{ textDecoration: 'none', width: 'auto' }}>View More</Button> */}
+        {viewMore ? <Button variant="link" onClick={onViewMore} style={{ textDecoration: 'none', width: 'auto' }}>View More</Button> : null}
       </div>
       <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
         <Form noValidate onSubmit={handleSubmit(handleFormSubmit)}>
