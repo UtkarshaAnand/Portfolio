@@ -1,26 +1,25 @@
 const PricingDetails = [
   {
-    header: 'Ovulation Induction',
-    min: '1,000',
-    max: '3,000',
+    header: 'Donor Embryo',
+    min: '2,00,000',
   },
   {
     header: 'IUI',
-    text: 'Intra Uterine Insemination',
-    min: '7,500',
-    max: '10,000',
+    min: '30,000',
   },
   {
-    header: 'IVF',
-    text: 'In Vitro Fertilisation',
-    min: '1,33,000',
-    max: '1,50,000',
+    header: 'PESA/TESA',
+    min: '30,000',
   },
   {
-    header: 'ICSI',
-    text: 'Intra Cytoplasmic Sperm Insemination',
-    min: '1,33,000',
-    max: '1,50,000',
+    header: 'IVF ICSI',
+    min: '1,50,000',
+    max: '1,80,000',
+  },
+  {
+    header: 'Operative Hysteroscopy',
+    min: '30,000',
+    max: '40,000'
   },
 ];
 
@@ -30,15 +29,14 @@ function Pricing() {
         <h4 className="mb-4 text-muted">
           <b>PRICING</b>
         </h4>
-        <div className="pricing-content row justify-content-evenly">
+        <div className="pricing-content row g-4">
           {PricingDetails.map((details, idx) => (
-            <div className='col-12 col-lg-3' key={idx}>
+            <div className='col-12 col-lg-4' key={idx}>
               <div className="pricing-card card">
-                  <b className='pricing-header card-header'>{details.header}</b>
+                  <b className='pricing-header card-header text-muted'>{details.header}</b>
                 <div className='card-body'>
-                  <div className="mb-2 text-muted card-subtitle">{details.text}</div>
                   <div className='card-text'>
-                    &#8377; {details.min} - &#8377; {details.max}
+                    <span>&#8377; {details.min}</span>{details.max && <span> - &#8377; {details.max}</span>}
                   </div>
                 </div>
               </div>
