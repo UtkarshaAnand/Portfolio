@@ -4,8 +4,8 @@ import { Presets } from '../../common';
 const testimonialSchema = new Schema(
   {
     name: Presets.requiredStringType,
-    stars: { ...Presets.positiveIntegerType, min: 1, max: 5, default: 5 },
-    comment: Presets.requiredStringFunction(500),
+    rating: { ...Presets.positiveIntegerType, min: 1, max: 5, default: 5 },
+    comment: Presets.requiredStringFunction(),
   },
   { timestamps: true },
 );

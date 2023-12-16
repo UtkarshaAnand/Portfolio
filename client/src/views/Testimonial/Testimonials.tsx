@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import API from "../../api";
+import StarRating from "./Rating";
 import TestimonialForm from "./TestimonialForm";
 
 const MONTHS = [
@@ -19,7 +20,7 @@ const MONTHS = [
 
 interface Testimonial {
   name: string;
-  stars: number;
+  rating: number;
   comment: string;
   month: string;
   year: number;
@@ -32,20 +33,22 @@ interface Pagination {
   hasNextPage: boolean;
 }
 
+const DEFAULT_PAGINATION = {
+  total: 0,
+  skip: 0,
+  limit: 10,
+  hasNextPage: false,
+}
+
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [pageInfo, setPageInfo] = useState<Pagination>({
-    total: 0,
-    skip: 0,
-    limit: 3,
-    hasNextPage: false,
-  });
+  const [pageInfo, setPageInfo] = useState<Pagination>(DEFAULT_PAGINATION);
 
-  const fetchTestimonials = useCallback(() => {
+  const fetchTestimonials = useCallback((pagination?: Pagination) => {
     API.Testimonial.List({
       params: {
-        skip: pageInfo.skip,
-        limit: pageInfo.limit,
+        skip: pagination?.skip ?? pageInfo.skip,
+        limit: pagination?.limit ?? pageInfo.limit,
       },
     })
       .then(({ data }) => {
@@ -58,11 +61,13 @@ export default function Testimonials() {
                 month: MONTHS[date.getMonth()],
                 year: date.getFullYear(),
               };
-            })
-            const updatedTestimonials = [...currTestimonials, ...newTestimonials];
-            return updatedTestimonials;
-          }
-          );
+            });
+            const updatedTestimonials = [
+              ...(pagination ? [] : currTestimonials),
+              ...newTestimonials,
+            ];
+            return updatedTestimonials.sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          });
           setPageInfo((currPageInfo) => ({
             ...currPageInfo,
             skip: currPageInfo.limit + data.pageInfo.skip,
@@ -75,16 +80,15 @@ export default function Testimonials() {
   }, [pageInfo.limit, pageInfo.skip]);
 
   useEffect(() => {
-    if(!testimonials.length)
-    fetchTestimonials();
+    if (!testimonials.length) fetchTestimonials();
   }, [fetchTestimonials, testimonials.length]);
 
   const onSubmit = useCallback(() => {
-    fetchTestimonials();
+    fetchTestimonials(DEFAULT_PAGINATION);
   }, [fetchTestimonials]);
 
   return (
-    <div className="testimonial-container container">
+    <div className="testimonial-container container" id="testimonial">
       <h4 className="mb-4 text-muted">
         <b>TESTIMONIALS</b>
       </h4>
@@ -92,6 +96,9 @@ export default function Testimonials() {
         {testimonials.map((testimonial, idx) => (
           <div className="col-12 col-lg-4" key={idx}>
             <div className="testimonial-card card">
+              <div className="card-header">
+                <StarRating rating={testimonial.rating} viewOnly />
+              </div>
               <div className="card-body">
                 <div className="card-text">
                   <small>
@@ -115,7 +122,11 @@ export default function Testimonials() {
         ))}
       </div>
       <div className="row">
-        <TestimonialForm viewMore={pageInfo.hasNextPage} onSubmit={onSubmit} onViewMore={fetchTestimonials} />
+        <TestimonialForm
+          viewMore={pageInfo.hasNextPage}
+          onSubmit={() => onSubmit()}
+          onViewMore={() => fetchTestimonials()}
+        />
       </div>
     </div>
   );

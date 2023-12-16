@@ -30,8 +30,8 @@ const getTestimonials: RequestHandler = async (req, res, next) => {
   }
 };
 
-const createTestimonial: RequestHandler = async (req, res, next) => {
-  const { name, comment } = req.body;
+const createTestimonial: RequestHandler = async (req, res) => {
+  const { name, comment, rating } = req.body;
   try {
     if (!name) {
       throw createHttpError(400, 'Name is required');
@@ -39,13 +39,17 @@ const createTestimonial: RequestHandler = async (req, res, next) => {
     if (!comment) {
       throw createHttpError(400, 'Comment is required');
     }
+    if (!rating) {
+      throw createHttpError(400, 'Rating is required');
+    }
     const newTestimonial = await TestimonialModel.create({
       name,
       comment,
+      rating
     });
     res.status(200).json({ data: newTestimonial });
   } catch (err) {
-    next(err);
+    res.status(400).json({ error: err });
   }
 };
 
