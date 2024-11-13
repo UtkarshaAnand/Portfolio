@@ -3,7 +3,7 @@ import { env } from './utils';
 import app from './apps';
 import mongoose from 'mongoose';
 
-const port = env.PORT || 5000;
+const port = env.PORT;
 const dbUri = env.DB_URI;
 
 mongoose
